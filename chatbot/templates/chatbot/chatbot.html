@@ -1,0 +1,68 @@
+<!-- chatbot/templates/chatbot/chatbot.html -->
+<style>
+    h1 {
+        padding: 20px;
+        color: red;
+        text-align: center;
+    }
+    
+    #body {
+        text-align: center;
+        font-style: oblique;
+        font-size: 25px;
+    }
+    
+    #query {
+        padding: 20px;
+    }
+    
+    .middle {
+        background-color: white;
+        width: 300px;
+        height: 30vh;
+        border: 30px;
+        padding: 50px;
+        margin: auto;
+    }
+    
+    input[type=text] {
+        width: 50%;
+        padding: 12px;
+        border: 3px solid #93e4f0;
+        border-radius: 4px;
+        resize: vertical;
+    }
+    
+    #user {
+        background-color: blue;
+    }
+    
+    #bot {
+        background-color: white;
+    }
+</style>
+<header>
+    <h1>Let's Talk😊</h1>
+</header>
+<div id="body">
+    <div id="query">
+        <form method="post">
+            {% csrf_token %}
+            <label for="user_input">Ask a question:  </label>
+            <input type="text" name="user_input" id="user_input">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="middle">
+        {% if user_input %}
+        <p><pre>
+             User
+           <p id="user">  {{ user_input }}</p></pre></p>
+        <p><pre>
+            Bot
+            <p id="bot">{{ response }}
+            </p>
+        </pre></p>
+        {% endif %}
+    </div>
+</div>
